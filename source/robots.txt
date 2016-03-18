@@ -1,0 +1,7 @@
+---
+layout: null
+---
+User-agent: *
+Disallow: {{ site.url }}/archives
+
+Sitemap: {{ site.url }}/sitemap.xml
