@@ -5,7 +5,10 @@ comments: true
 sharing: true
 footer: true
 ---
+{% img right /images/avatar.png 150 200 'me' 'avatar' %}
 
-##Marek Dziewit Ruby On Rails Developer
+Hi, my name is Marek Dziewit and I’m a geek, martial artist, Ruby and Ruby on Rails engineer.
 
-`puts hello world code here`
+Mail me: marek.w.dziewit@gmail.com
+
+Linked in: https://pl.linkedin.com/in/marek-dziewit-b73b1994
