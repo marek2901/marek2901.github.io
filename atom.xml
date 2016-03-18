@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Ruby Mark]]></title>
+  <link href="http://marek2901.github.io/atom.xml" rel="self"/>
+  <link href="http://marek2901.github.io/"/>
+  <updated>2016-03-18T19:23:04+01:00</updated>
+  <id>http://marek2901.github.io/</id>
+  <author>
+    <name><![CDATA[Marek Dziewit]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby Environment Setup With Rbenv]]></title>
+    <link href="http://marek2901.github.io/blog/2016/03/18/my-rbenv-configuration/"/>
+    <updated>2016-03-18T17:14:02+01:00</updated>
+    <id>http://marek2901.github.io/blog/2016/03/18/my-rbenv-configuration</id>
+    <content type="html"><![CDATA[<h2>Ruby On Your computer</h2>
+
+<p>There are few ways to get up and running with Ruby on your machine,
+on OS X you have one right out of the box, on linux you can install it via
+package managers (rpm, apt). But this approach gives you single out dated
+ruby version you have to use. To avoid i use ruby env manager, so i can install
+latest rubies (even developer previews), and switch them at runtime.</p>
+
+<!-- more -->
+
+
+<h3>1. Why I Use rbenv</h3>
+
+<p>There are few ruby environment managers (rvm, rbenv, chruby), but i mostly use rbenv
+because it&rsquo;s simple and has a lot of plugins. It allows to use different ruby versions
+for different shell instances.</p>
+
+<h3>2. Installation</h3>
+
+<blockquote><p>Note: This is my personal setup with all my favorite plugins</p></blockquote>
+
+<h4>Linux/Ubuntu</h4>
+
+<p>1.Install dependecies</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get update && sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.Install rbenv</p>
+
+<blockquote><p>Use .zshrc or bash_profile insted of bashrc depending on your shell</p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd
+</span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+</span><span class='line'>echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+</span><span class='line'>echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+</span><span class='line'>exec $SHELL
+</span><span class='line'>
+</span><span class='line'>git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+</span><span class='line'>echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' &gt;&gt; ~/.bashrc
+</span><span class='line'>exec $SHELL
+</span><span class='line'>
+</span><span class='line'>git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.0
+</span><span class='line'>rbenv global 2.3.0
+</span><span class='line'>
+</span><span class='line'>ruby -v
+</span><span class='line'># should give output with proper ruby version</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>OS X</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install rbenv ruby-build
+</span><span class='line'>
+</span><span class='line'>echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
+</span><span class='line'>source ~/.bash_profile
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.0
+</span><span class='line'>rbenv global 2.3.0
+</span><span class='line'>
+</span><span class='line'>ruby -v
+</span><span class='line'># should give output with proper ruby version</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3.Install plugins</h2>
+
+<ul>
+<li>rbenv-rehash</li>
+</ul>
+
+
+<p>Automaticaly executes rbenv rehash when new shims added</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/sstephenson/rbenv-gem-rehash.git $(rbenv root)/plugins/rbenv-default-gems</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>rbenv-default-gems</li>
+</ul>
+
+
+<p>Install default gems at each ruby version</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/rbenv/rbenv-default-gems.git $(rbenv root)/plugins/rbenv-default-gems
+</span><span class='line'>
+</span><span class='line'>## always install bundler in new rubies
+</span><span class='line'>echo bundler &gt;&gt; $(rbenv root)/default-gems</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>rbenv-bundle-exec</li>
+</ul>
+
+
+<p>When working on more than one project with bundler dependency, sometimes
+there is dependency mismatch, for example in one project you use rails 3
+and another you use rails 4, without this plugin, we would have to
+manually write <code>bundle exec &lt;command&gt;</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>## no more need to prefix `bundle exec` in rails command
+</span><span class='line'>
+</span><span class='line'>git clone https://github.com/maljub01/rbenv-bundle-exec.git $(rbenv root)/plugins/rbenv-bundle-exec</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>rbenv-sudo</li>
+</ul>
+
+
+<p>simply type <code>rbenv sudo &lt;command&gt;</code> to execute it in sudo session</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/dcarley/rbenv-sudo.git $(rbenv root)/plugins/rbenv-sudo</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>
