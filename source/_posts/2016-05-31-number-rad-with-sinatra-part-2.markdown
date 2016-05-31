@@ -13,7 +13,7 @@ In this post we will try to complete other REST actions like Creating Updatind D
 <!-- more -->
 
 I'd like to notice one thing on the begining. Hazel is not that RAD As i wanted it to be, comparing to Rails when you simply type
-
+ 
 ```
 rails generate scaffold Post title:string body:text
 ```
